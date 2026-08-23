@@ -1,58 +1,43 @@
 # Privacy Permitter
 
-## Overview
+Chrome extension that reviews installed extensions and scores their requested permissions for quick risk visibility.
 
-Privacy Permitter is a Chrome Extension that analyzes installed browser extensions and assigns risk scores based on their requested permissions. The extension helps users identify potentially dangerous extensions that have access to sensitive data or capabilities.
+## What it does
 
-## Permissions Used
+- Lists enabled installed extensions.
+- Scores sensitive permissions and broad host access.
+- Groups results into **Critical**, **Warning**, and **Safe**.
+- Supports search and category filters.
 
-- `management`: Required to enumerate installed extensions and read their permissions
+The scoring model is a heuristic and is intended for awareness, not a definitive security verdict.
 
-## Risk Scoring Model
+## Permission
 
-Permission weights:
+- `management` — required to enumerate installed extensions and inspect their declared permissions.
 
-| Permission | Weight |
-|------------|--------|
-| all_urls / <all_urls> | 40 |
-| browsingData | 35 |
-| webRequest | 30 |
-| webRequestBlocking | 30 |
-| nativeMessaging | 30 |
-| geolocation | 25 |
-| history | 25 |
-| tabs | 20 |
-| cookies | 20 |
-| clipboardRead | 20 |
-| downloads | 15 |
-| all other permissions | 2 |
+## Install locally
 
-Host permissions scoring:
-- `<all_urls>`, `*://*/*`, `https://*/*`, or `http://*/*` adds 40 points
+1. Open `chrome://extensions/` in Chrome.
+2. Enable **Developer mode**.
+3. Select **Load unpacked**.
+4. Choose the repository folder.
 
-Categories:
-- Critical (red): score >= 50
-- Warning (amber): score >= 20
-- Safe (green): score < 20
+## Structure
 
-## Installation
-
-1. Open Chrome and navigate to `chrome://extensions/`
-2. Enable "Developer mode" in the top right corner
-3. Click "Load unpacked"
-4. Select the Privacy-Permitter directory
-5. The extension icon will appear in your toolbar
-
-## File Structure
-
-```
+```text
 Privacy-Permitter/
 ├── manifest.json
-├── background/
-│   └── service-worker.js
 ├── popup/
 │   ├── popup.html
 │   ├── popup.css
 │   └── popup.js
 └── README.md
 ```
+
+## Risk thresholds
+
+- **Critical:** 50+
+- **Warning:** 20–49
+- **Safe:** below 20
+
+Future production hardening and Chrome Web Store work is tracked in [#1](../../issues/1).

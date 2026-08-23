@@ -2,11 +2,10 @@
   "name": "Privacy Permitter",
   "version": "1.0.0",
   "manifest_version": 3,
+  "description": "Analyze installed Chrome extensions and flag potentially risky permissions.",
   "permissions": ["management"],
   "action": {
+    "default_title": "Privacy Permitter",
     "default_popup": "popup/popup.html"
-  },
-  "background": {
-    "service_worker": "background/service-worker.js"
   }
 }
