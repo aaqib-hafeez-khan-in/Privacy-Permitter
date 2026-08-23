@@ -1,0 +1,12 @@
+{
+  "name": "Privacy Permitter",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "permissions": ["management"],
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+  "background": {
+    "service_worker": "background/service-worker.js"
+  }
+}
